@@ -21,13 +21,13 @@ ready(() => {
 
   frontSide.forEach((item) => {
     item.addEventListener('click', () => {
-      item.parentNode.classList.add('flipped');
+      item.parentNode.classList.toggle('flipped');
     });
   });
 
   backSide.forEach((item) => {
-    item.addEventListener('click', (e) => {
-      e.parentNode.classList.add('flipped');
+    item.addEventListener('click', () => {
+      item.parentNode.classList.toggle('flipped');
     });
   });
 });

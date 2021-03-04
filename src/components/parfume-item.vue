@@ -1,33 +1,48 @@
 <template>
   <div class="grid-item card">
     <figure class="effect-sadie front">
-      <img src="../assets/img/par/photo_2021-02-25_22-02-03.webp" alt="Image" class="img-fluid tm-img" />
+      <img
+        :src="require(`../assets/img/par/${imagePath}`)"
+        alt="Image"
+        class="img-fluid tm-img"
+      />
       <figcaption>
         <h2 class="tm-figure-title">
-          <span
-            >Bright Crystal <strong> {{ msg }} </strong></span
+          <span>
+            {{ parfumeName }}<strong> {{ parfumeNameBold }} </strong></span
           >
         </h2>
-        <p class="tm-figure-description">Характер: благоухающий, женственный, соблазнительный, чувственный</p>
+        <p class="tm-figure-description">{{ shortDescription }}</p>
       </figcaption>
     </figure>
     <div class="back">
       <div class="back-data">
-        <h3 class="price">200 UAH</h3>
-        Группа ароматов: цветочные <br />
-        Содержит ноты: семена граната, юзу <br />
-        Ноты сердца: лепестки магнолии, пион, цветки лотоса <br />
-        Базовые ноты: амбра, мускус, южноафриканское красное дерево
+        <h3 class="price">{{ price }} {{ currentCurrency }}</h3>
+        Группа ароматов: {{ aromaGroup }} <br />
+        Содержит ноты: {{ aromaNotes }} <br />
+        Ноты сердца: {{ aromaHearth }} <br />
+        Базовые ноты: {{ aromaBases }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
+let currency = 'UAH';
 export default {
   data() {
     return {
-      msg: 'Versace',
+      parfumeName: 'Bright Crystal',
+      parfumeNameBold: 'Versace',
+      imagePath: 'photo_2021-02-25_22-02-03.webp',
+      shortDescription:
+        'Характер: благоухающий, женственный, соблазнительный, чувственный',
+      aromaGroup: 'цветочные',
+      aromaNotes: 'семена граната, юзу',
+      aromaHearth: 'лепестки магнолии, пион, цветки лотоса',
+      aromaBases: 'амбра, мускус, южноафриканское красное дерево',
+      currentCurrency: currency,
+      price: 200,
     };
   },
 };
@@ -547,6 +562,7 @@ textarea {
 .tm-img-gallery {
   margin: 0 auto 40px;
   display: inline-block;
+  min-height: 100vh;
 }
 
 @media (min-width: 480px) {
@@ -602,8 +618,16 @@ figure.effect-sadie figcaption::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: -webkit-linear-gradient(top, rgba(72, 76, 97, 0) 0%, rgba(72, 76, 97, 0.8) 75%);
-  background: linear-gradient(to bottom, rgba(72, 76, 97, 0) 0%, rgba(72, 76, 97, 0.8) 75%);
+  background: -webkit-linear-gradient(
+    top,
+    rgba(72, 76, 97, 0) 0%,
+    rgba(72, 76, 97, 0.8) 75%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(72, 76, 97, 0) 0%,
+    rgba(72, 76, 97, 0.8) 75%
+  );
   content: '';
   opacity: 0;
   -webkit-transform: translate3d(0, 50%, 0);
@@ -711,13 +735,25 @@ figure.effect-sadie:hover p {
   transform: translate3d(0, 10px, 0);
 }
 
-.cd-hero-slider .selected .cd-full-width figure.effect-sadie:hover .tm-figure-title,
-.cd-hero-slider .selected .cd-full-width figure.effect-sadie:hover p.tm-figure-description {
+.cd-hero-slider
+  .selected
+  .cd-full-width
+  figure.effect-sadie:hover
+  .tm-figure-title,
+.cd-hero-slider
+  .selected
+  .cd-full-width
+  figure.effect-sadie:hover
+  p.tm-figure-description {
   opacity: 1;
   text-shadow: 2px 2px 6px #000;
 }
 
-.cd-hero-slider .selected .cd-full-width figure.effect-sadie:hover p.tm-figure-description {
+.cd-hero-slider
+  .selected
+  .cd-full-width
+  figure.effect-sadie:hover
+  p.tm-figure-description {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
@@ -956,7 +992,8 @@ figure.effect-sadie:hover p {
   position: relative;
   transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   margin: 0;
